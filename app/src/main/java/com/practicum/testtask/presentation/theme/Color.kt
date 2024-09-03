@@ -1,4 +1,4 @@
-package com.practicum.testtask.ui.theme
+package com.practicum.testtask.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

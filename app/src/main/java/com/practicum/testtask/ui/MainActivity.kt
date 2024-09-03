@@ -1,4 +1,4 @@
-package com.practicum.testtask
+package com.practicum.testtask.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.practicum.testtask.ui.theme.TestTaskTheme
+import com.practicum.testtask.presentation.theme.TestTaskTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
