@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class Item(
     @PrimaryKey(autoGenerate = true) val id :Int,
     val name : String,
-    val time : Int,
+    val time : Long,
     val tags : List<String>,
     val amount : Int
 )

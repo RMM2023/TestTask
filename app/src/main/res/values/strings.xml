@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">TestTask</string>
+    <string name="item_list">Список товаров</string>
+    <string name="item_search">Поиск товаров</string>
+    <string name="on_stock">На складе:</string>
+    <string name="arrival_date">Дата добавления:</string>
+    <string name="item_remove">Удаление товара</string>
+    <string name="remove_hint">Вы действительно хотите удалить выбранный товар?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="item_amount">Количество товара</string>
+    <string name="accept">Принять</string>
+    <string name="cancel">Отмена</string>
 </resources>

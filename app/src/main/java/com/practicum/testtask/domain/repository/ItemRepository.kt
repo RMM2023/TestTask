@@ -4,9 +4,9 @@ import com.practicum.testtask.data.model.Item
 import kotlinx.coroutines.flow.Flow
 
 interface ItemRepository {
-    suspend fun getAllItems() : Flow<List<Item>>
-    suspend fun insertItem(item : Item)
-    suspend fun deleteItem(item: Item)
-    suspend fun searchItems(query : String) : Flow<List<Item>>
-    suspend fun updateItemAmount(amount : Int, id : Int)
+    fun getAllItems() : Flow<List<Item>>
+    fun insertItem(item : Item) : Long
+    fun deleteItem(item: Item) : Int
+    fun searchItems(query : String) : Flow<List<Item>>
+    fun updateItemAmount(amount : Int, id : Int) : Int
 }

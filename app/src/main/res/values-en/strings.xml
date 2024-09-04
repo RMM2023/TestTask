@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TestTask</string>
+    <string name="item_list">Item List</string>
+    <string name="item_search">Item Search</string>
+    <string name="on_stock">On Stock:</string>
+    <string name="arrival_date">Arrival Date:</string>
+    <string name="item_remove">Item Remove</string>
+    <string name="remove_hint">"Do you want to delete an item? "</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="item_amount">Item Amount</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+</resources>

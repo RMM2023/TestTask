@@ -1,11 +1,19 @@
 package com.practicum.testtask.data.local
 
 import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class Converters {
+    val gson = Gson()
     @TypeConverter
-    fun fromString(string : String) : List<String> = string.split(",")
+    fun fromString(value: String): List<String> {
+        val listType = object : TypeToken<List<String>>() {}.type
+        return gson.fromJson(value, listType)
+    }
 
     @TypeConverter
-    fun toString(list : List<String>) : String = list.joinToString ( "," )
+    fun fromList(list: List<String>): String {
+        return gson.toJson(list)
+    }
 }

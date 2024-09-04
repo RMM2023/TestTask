@@ -6,23 +6,23 @@ import com.practicum.testtask.domain.repository.ItemRepository
 import kotlinx.coroutines.flow.Flow
 
 class ItemRepositoryImpl(private val itemDao : ItemDao) : ItemRepository {
-    override suspend fun getAllItems(): Flow<List<Item>> {
+    override fun getAllItems(): Flow<List<Item>> {
         return itemDao.getAllItems()
     }
 
-    override suspend fun insertItem(item: Item) {
+    override fun insertItem(item: Item): Long {
         return itemDao.insertItem(item)
     }
 
-    override suspend fun deleteItem(item: Item) {
+    override fun deleteItem(item: Item): Int {
         return itemDao.deleteItem(item)
     }
 
-    override suspend fun searchItems(query: String): Flow<List<Item>> {
+    override fun searchItems(query: String): Flow<List<Item>> {
         return itemDao.searchItems(query)
     }
 
-    override suspend fun updateItemAmount(amount: Int, id: Int) {
+    override fun updateItemAmount(amount: Int, id: Int): Int {
         return itemDao.updateItemAmount(amount, id)
     }
 }

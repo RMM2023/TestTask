@@ -1,23 +1,23 @@
 package com.practicum.testtask.presentation.composable
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.AddCircle
-import androidx.compose.material.icons.outlined.Remove
+import androidx.compose.material.icons.outlined.AddCircleOutline
+import androidx.compose.material.icons.outlined.RemoveCircleOutline
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.practicum.testtask.R
 import com.practicum.testtask.data.model.Item
 import com.practicum.testtask.presentation.viewmodel.MainViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -38,11 +38,11 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color(0xFF87CEEB))
-                .padding(PaddingValues(0.dp,32.dp,0.dp,16.dp))
+                .padding(PaddingValues(0.dp, 48.dp, 0.dp, 16.dp))
         ) {
             Text(
-                text = "Список товаров",
-                style = MaterialTheme.typography.headlineMedium,
+                text = stringResource(R.string.item_list),
+                style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
@@ -53,7 +53,7 @@ fun MainScreen(
                 searchQuery = it
                 viewModel.searchItems(it)
             },
-            label = { Text("Поиск товаров") },
+            label = { Text(stringResource(R.string.item_search)) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -62,7 +62,7 @@ fun MainScreen(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(PaddingValues(16.dp,8.dp,16.dp,16.dp))
+                .padding(PaddingValues(16.dp, 8.dp, 16.dp, 16.dp))
         )
 
         LazyColumn {
@@ -108,7 +108,8 @@ fun ItemCard(
             ) {
                 Text(
                     text = item.name,
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(PaddingValues(0.dp,8.dp,0.dp,0.dp))
                 )
                 Row(modifier = Modifier.align(Alignment.CenterVertically)) {
@@ -126,7 +127,7 @@ fun ItemCard(
                     }
                 }
             }
-            FlowRow(modifier = Modifier.padding(vertical = 8.dp)) {
+            FlowRow(modifier = Modifier.padding(bottom = 8.dp)) {
                 item.tags.forEach { tag ->
                     AssistChip(
                         onClick = { },
@@ -137,14 +138,20 @@ fun ItemCard(
             }
             Row(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("На складе:")
+                    Text(
+                        text = stringResource(R.string.on_stock),
+                        fontWeight = FontWeight.Bold
+                    )
                     Text(
                         text = item.amount.toString(),
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Дата добавления:")
+                    Text(
+                        text = stringResource(R.string.arrival_date),
+                        fontWeight = FontWeight.Bold
+                    )
                     Text(
                         text = formatDate(item.time),
                         style = MaterialTheme.typography.bodyLarge
@@ -195,20 +202,20 @@ fun DeleteConfirmationDialog(
         },
         title = {
             Text(
-                "Удаление товара",
+                stringResource(R.string.item_remove),
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
             )
         },
-        text = { Text("Вы действительно хотите удалить выбранный товар?") },
+        text = { Text(stringResource(R.string.remove_hint)) },
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text("Да")
+                Text(stringResource(R.string.yes))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Нет")
+                Text(stringResource(R.string.no))
             }
         }
     )
@@ -233,7 +240,7 @@ fun EditAmountDialog(
                     .padding(8.dp)
             )
         },
-        title = { Text("Количество товара") },
+        title = { Text(stringResource(R.string.item_amount)) },
         text = {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -243,13 +250,12 @@ fun EditAmountDialog(
                 IconButton(
                     onClick = { if (amount > 0) amount-- },
                     modifier = Modifier
-                        .size(40.dp)
-                        .clip(CircleShape)
-                        .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                        .size(30.dp)
                 ) {
                     Icon(
-                        Icons.Outlined.Remove,
+                        Icons.Outlined.RemoveCircleOutline,
                         contentDescription = "Decrease",
+                        modifier = Modifier.size(60.dp),
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
@@ -262,12 +268,11 @@ fun EditAmountDialog(
                     onClick = { amount++ },
                     modifier = Modifier
                         .size(30.dp)
-                        .clip(CircleShape)
-                        .border(6.dp, MaterialTheme.colorScheme.primary, CircleShape)
                 ) {
                     Icon(
-                        Icons.Outlined.AddCircle,
+                        Icons.Outlined.AddCircleOutline,
                         contentDescription = "Increase",
+                        modifier = Modifier.size(60.dp),
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
@@ -275,12 +280,12 @@ fun EditAmountDialog(
         },
         confirmButton = {
             TextButton(onClick = { onConfirm(amount) }) {
-                Text("Принять")
+                Text(stringResource(R.string.accept))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Отмена")
+                Text(stringResource(R.string.cancel))
             }
         }
     )
